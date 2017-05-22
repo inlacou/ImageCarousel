@@ -1,4 +1,6 @@
-ImageCarroussel
+# ImageCarroussel
+
+[![](https://jitpack.io/v/byvapps/ImageCarroussel.svg)](https://jitpack.io/#byvapps/ImageCarroussel)
 
 Add to your layout xml:
 
