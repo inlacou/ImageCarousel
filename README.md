@@ -27,7 +27,7 @@ Configure it:
 
 	imagecarroussel.populate(urls);
 ```
-You can add it inside your CollaspsingToolbarLayout, for example:
+You can add it inside your AppBarLayout, for example:
 
 ``` xml
 <android.support.design.widget.AppBarLayout
