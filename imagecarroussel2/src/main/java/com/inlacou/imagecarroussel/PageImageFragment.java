@@ -22,6 +22,7 @@ public class PageImageFragment extends Fragment {
 	private ImageView image;
 	private TextView position;
 	private String url;
+	private boolean showPageNumber;
 	private View.OnClickListener mListener;
 
 	@Override
@@ -35,6 +36,7 @@ public class PageImageFragment extends Fragment {
 		maxPages = data.getInt("max_pages", 0);
 		mCurrentPage = data.getInt("current_page", 0);
 		url = data.getString("url", "");
+		showPageNumber = data.getBoolean("showPageNumber");
 
 	}
 
@@ -47,6 +49,11 @@ public class PageImageFragment extends Fragment {
 		View v = inflater.inflate(R.layout.viewpager_layout_page_image, container, false);
 		image = (ImageView) v.findViewById(R.id.image);
 		position = (TextView) v.findViewById(R.id.position);
+		if(showPageNumber){
+			position.setVisibility(View.VISIBLE);
+		}else{
+			position.setVisibility(View.GONE);
+		}
 		image.setOnClickListener(mListener);
 
 		position.setText((mCurrentPage+1) + "/" + maxPages);

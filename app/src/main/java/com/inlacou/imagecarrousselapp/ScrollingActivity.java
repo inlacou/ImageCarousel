@@ -33,7 +33,7 @@ public class ScrollingActivity extends AppCompatActivity {
 		urls.add("http://assets.pokemon.com/assets/cms2/img/pokedex/full//748.png");
 		urls.add("https://vignette3.wikia.nocookie.net/pokemon/images/b/b4/393Piplup_Pokemon_Ranger_Guardian_Signs.png/revision/latest?cb=20150109224144");
 		
-		imagecarroussel.populate(urls);
+		imagecarroussel.populate(urls, false);
 		
 		setSupportActionBar(toolbar);
 		

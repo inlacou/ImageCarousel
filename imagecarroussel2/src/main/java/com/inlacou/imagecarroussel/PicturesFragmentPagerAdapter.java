@@ -15,10 +15,11 @@ public class PicturesFragmentPagerAdapter extends android.support.v4.app.Fragmen
 	private static final String DEBUG_TAG = PicturesFragmentPagerAdapter.class.getName();
 	private final Callbacks mCallbacks;
 	private int pageCount;
+	private boolean showPageNumber;
 	private final ArrayList<String> urls;
 
 	/** Constructor of the class */
-	public PicturesFragmentPagerAdapter(FragmentManager fm, ArrayList<String> urls, Callbacks callbacks) {
+	public PicturesFragmentPagerAdapter(FragmentManager fm, ArrayList<String> urls, boolean showPageNumber, Callbacks callbacks) {
 		super(fm);
 		for (int i=urls.size()-1; i>=0; i--){
 			if(urls.get(i)!=null && urls.get(i).isEmpty()) urls.remove(i);
@@ -26,6 +27,7 @@ public class PicturesFragmentPagerAdapter extends android.support.v4.app.Fragmen
 		this.urls = urls;
 		pageCount = urls.size();
 		mCallbacks = callbacks;
+		this.showPageNumber = showPageNumber;
 	}
 
 	/** This method will be invoked when a page is requested to create */
@@ -35,6 +37,7 @@ public class PicturesFragmentPagerAdapter extends android.support.v4.app.Fragmen
 		Bundle data = new Bundle();
 		data.putInt("current_page", position);
 		data.putInt("max_pages", pageCount);
+		data.putBoolean("showPageNumber", showPageNumber);
 		data.putString("url", urls.get(position));
 		myFragment.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -56,7 +59,7 @@ public class PicturesFragmentPagerAdapter extends android.support.v4.app.Fragmen
 	public int getItemPosition(Object object) {
 		return PagerAdapter.POSITION_NONE;
 	}
-
+	
 	public interface Callbacks {
 		void onItemClick(int position);
 	}

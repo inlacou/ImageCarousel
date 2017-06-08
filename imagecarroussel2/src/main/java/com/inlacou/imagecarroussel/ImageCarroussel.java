@@ -81,8 +81,12 @@ public class ImageCarroussel extends FrameLayout {
 	}
 	
 	public void populate(final ArrayList<String> urls) {
+		populate(urls, true);
+	}
+	
+	public void populate(final ArrayList<String> urls, boolean showPageNumber) {
 		/** Instantiating FragmentPagerAdapter */
-		pagerAdapter = new PicturesFragmentPagerAdapter(fragmentManager, urls, new PicturesFragmentPagerAdapter.Callbacks() {
+		pagerAdapter = new PicturesFragmentPagerAdapter(fragmentManager, urls, showPageNumber, new PicturesFragmentPagerAdapter.Callbacks() {
 			@Override
 			public void onItemClick(int position) {
 				if(mCallbacks==null || !mCallbacks.onItemClick()){
