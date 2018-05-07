@@ -47,8 +47,8 @@ public class PageImageFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.viewpager_layout_page_image, container, false);
-		image = (ImageView) v.findViewById(R.id.image);
-		position = (TextView) v.findViewById(R.id.position);
+		image = v.findViewById(R.id.image);
+		position = v.findViewById(R.id.position);
 		if(showPageNumber){
 			position.setVisibility(View.VISIBLE);
 		}else{

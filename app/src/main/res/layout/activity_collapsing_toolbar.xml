@@ -4,9 +4,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:fitsSystemWindows="true"
-	tools:context="com.inlacou.imagecarrousselapp.ScrollingActivity">
+	android:layout_height="match_parent">
 	
 	<android.support.design.widget.AppBarLayout
 		android:id="@+id/app_bar"
@@ -20,7 +18,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:fitsSystemWindows="true"
-			app:contentScrim="?attr/colorPrimary"
+			app:contentScrim="@color/colorPrimary"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed">
 			
 			<com.inlacou.imagecarroussel.ImageCarroussel
@@ -33,14 +31,29 @@
 			<android.support.v7.widget.Toolbar
 				android:id="@+id/toolbar"
 				android:layout_width="match_parent"
-				android:layout_height="?attr/actionBarSize"
+				android:layout_height="64dp"
 				app:layout_collapseMode="pin"
 				app:popupTheme="@style/AppTheme.PopupOverlay"/>
 		
 		</android.support.design.widget.CollapsingToolbarLayout>
 	</android.support.design.widget.AppBarLayout>
 	
-	<include layout="@layout/content_scrolling"/>
+	<android.support.v4.widget.NestedScrollView
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:clipToPadding="false"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior">
+		
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_margin="@dimen/text_margin"
+			android:text="@string/large_text"/>
+	
+	</android.support.v4.widget.NestedScrollView>
 	
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/fab"

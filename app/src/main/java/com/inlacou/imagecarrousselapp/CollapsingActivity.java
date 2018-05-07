@@ -14,16 +14,20 @@ import com.inlacou.imagecarroussel.ImageCarroussel;
 
 import java.util.ArrayList;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class CollapsingActivity extends AppCompatActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_scrolling);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+		setContentView(R.layout.activity_collapsing_toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
 		collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-		ImageCarroussel imagecarroussel = (ImageCarroussel) findViewById(R.id.imagecarroussel);
+		collapsingToolbarLayout.setTitleEnabled(true);
+		collapsingToolbarLayout.setTitle("Collapsing");
+		ImageCarroussel imagecarroussel = findViewById(R.id.imagecarroussel);
 		imagecarroussel.setFragmentManager(getSupportFragmentManager());
 		
 		ArrayList<String> urls = new ArrayList<>();
@@ -33,11 +37,11 @@ public class ScrollingActivity extends AppCompatActivity {
 		urls.add("http://assets.pokemon.com/assets/cms2/img/pokedex/full//748.png");
 		urls.add("https://vignette3.wikia.nocookie.net/pokemon/images/b/b4/393Piplup_Pokemon_Ranger_Guardian_Signs.png/revision/latest?cb=20150109224144");
 		
-		imagecarroussel.populate(urls, false);
+		imagecarroussel.populate(urls, true);
 		
 		setSupportActionBar(toolbar);
 		
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+		FloatingActionButton fab = findViewById(R.id.fab);
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {

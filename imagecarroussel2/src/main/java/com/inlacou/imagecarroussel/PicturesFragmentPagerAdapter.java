@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * Created by inlacou on 3/05/16.
  */
 public class PicturesFragmentPagerAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
-	private static final String DEBUG_TAG = PicturesFragmentPagerAdapter.class.getName();
 	private final Callbacks mCallbacks;
 	private int pageCount;
 	private boolean showPageNumber;
