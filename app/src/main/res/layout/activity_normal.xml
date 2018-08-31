@@ -34,7 +34,7 @@
 			android:layout_height="wrap_content"
 			android:background="@color/red_500"
 			android:orientation="vertical">
-			<com.inlacou.imagecarroussel.ImageCarroussel
+			<com.inlacou.imagecarroussel.ImageCarousel
 				android:id="@+id/imagecarroussel"
 				android:layout_width="match_parent"
 				android:layout_height="250dp"

@@ -9,9 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.inlacou.imagecarroussel.ImageCarroussel;
-import com.inlacou.imagecarroussel.ImageCarroussel3;
-import com.inlacou.imagecarroussel.ImageCarrousselMdl;
+import com.inlacou.imagecarroussel.ImageCarousel;
+import com.inlacou.imagecarroussel.ImageCarouselMdl;
+import com.inlacou.imagecarroussel.PositionDisplayMode;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class NormalActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_normal);
 		Toolbar toolbar = findViewById(R.id.toolbar);
-		ImageCarroussel imagecarroussel = findViewById(R.id.imagecarroussel);
+		ImageCarousel imagecarroussel = findViewById(R.id.imagecarroussel);
 		
 		ArrayList<String> urls = new ArrayList<>();
 		
@@ -31,7 +31,7 @@ public class NormalActivity extends AppCompatActivity {
 		urls.add("http://assets.pokemon.com/assets/cms2/img/pokedex/full//748.png");
 		urls.add("https://vignette3.wikia.nocookie.net/pokemon/images/b/b4/393Piplup_Pokemon_Ranger_Guardian_Signs.png/revision/latest?cb=20150109224144");
 		
-		imagecarroussel.setModel(new ImageCarrousselMdl(getSupportFragmentManager(), urls, new ImageCarrousselMdl.PositionDisplay(true), null));
+		imagecarroussel.setModel(new ImageCarouselMdl(getSupportFragmentManager(), urls, PositionDisplayMode.NONE, null));
 		
 		setSupportActionBar(toolbar);
 		

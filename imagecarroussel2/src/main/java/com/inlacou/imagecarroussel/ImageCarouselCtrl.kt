@@ -1,85 +1,21 @@
 package com.inlacou.imagecarroussel
 
-import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.ViewPager
 import android.support.v7.graphics.Palette
-import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.widget.FrameLayout
-
 import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity
 import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity
 import com.etiennelawlor.imagegallery.library.enums.PaletteColorType
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
-import java.util.ArrayList
-
-/**
- * Created by inlacoubyv on 6/11/15.
- */
-@Deprecated("OLD")
-class ImageCarroussel3 @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 
 	private val paletteColorType: PaletteColorType? = null
 
-	private var mCallbacks: Callbacks? = null
-	private var viewPager: ViewPager? = null
-	private var pagerAdapter: PicturesFragmentPagerAdapter? = null
-	private var fragmentManager: FragmentManager? = null
-
-	init {
-		getData()
-		initialize()
-		setListeners()
-	}
-
-	fun getData() {}
-
-	fun initialize(view: View) {
-		viewPager = view.findViewById(R.id.pager)
-	}
-
-	protected fun initialize() {
-		val rootView = View.inflate(context, R.layout.view_imagecarroussel, this)
-		initialize(rootView)
-	}
-
-	fun setFragmentManager(fragmentManager: FragmentManager) {
-		this.fragmentManager = fragmentManager
-	}
-
-	@JvmOverloads
-	fun populate(urls: ArrayList<String>, showPageNumber: Boolean = true) {
-		/** Instantiating FragmentPagerAdapter  */
-		/*pagerAdapter = PicturesFragmentPagerAdapter(fragmentManager, urls, showPageNumber, PicturesFragmentPagerAdapter.Callbacks {
-			if (mCallbacks == null || !mCallbacks!!.onItemClick()) {
-				if (urls.size == 0) {
-					return@Callbacks
-				}
-
-				val intent = Intent(context, ImageGalleryActivity::class.java)
-
-				callbacks()
-
-				intent.putStringArrayListExtra(ImageGalleryActivity.KEY_IMAGES, urls)
-
-				context?.startActivity(intent)
-			}
-		})*/
-
-		/** Setting the pagerAdapter to the pager object  */
-		viewPager?.adapter = pagerAdapter
-	}
-
-	private fun callbacks() {
-		Log.d(DEBUG_TAG + ".callbacks", "callbacks")
+	private fun weirdCallbacks() {
 		ImageGalleryActivity.setImageThumbnailLoader { iv, imageUrl, dimension ->
-			Log.d(DEBUG_TAG + ".loadImageThumbnail", "imageUrl: $imageUrl")
 			if (!android.text.TextUtils.isEmpty(imageUrl)) {
 				Picasso.get()
 						.load(imageUrl)
@@ -91,7 +27,6 @@ class ImageCarroussel3 @JvmOverloads constructor(context: Context, attrs: Attrib
 			}
 		}
 		FullScreenImageGalleryActivity.setFullScreenImageLoader { iv, imageUrl, width, bgLinearLayout ->
-			Log.d("$DEBUG_TAG.loadFullScreenImage", "imageUrl: $imageUrl")
 			if (!android.text.TextUtils.isEmpty(imageUrl)) {
 				Picasso.get()
 						.load(imageUrl)
@@ -217,19 +152,24 @@ class ImageCarroussel3 @JvmOverloads constructor(context: Context, attrs: Attrib
 		return bgColor
 	}
 
-	private fun setListeners() {}
+	fun onClick(position: Int) {
+		if(model.onItemClick?.invoke(position)!=true) {
+			if (model.urls.isNotEmpty()) {
+				val intent = Intent(view.context, ImageGalleryActivity::class.java)
 
-	fun setCallbacks(mCallbacks: Callbacks) {
-		this.mCallbacks = mCallbacks
+				weirdCallbacks()
+
+				intent.putStringArrayListExtra(ImageGalleryActivity.KEY_IMAGES, model.urls.toArrayList())
+
+				view.context?.startActivity(intent)
+			}
+		}
 	}
 
-	interface Callbacks {
-		fun onItemClick(): Boolean
-	}
-
-	companion object {
-
-		private val DEBUG_TAG = ImageCarroussel3::class.java.simpleName
+	private fun <T> List<T>.toArrayList(): ArrayList<T>{
+		val result = ArrayList<T>()
+		this.forEach { result.add(it) }
+		return result
 	}
 
 }

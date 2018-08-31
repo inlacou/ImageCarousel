@@ -21,7 +21,7 @@
 			app:contentScrim="@color/colorPrimary"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed">
 			
-			<com.inlacou.imagecarroussel.ImageCarroussel
+			<com.inlacou.imagecarroussel.ImageCarousel
 				android:id="@+id/imagecarroussel"
 				android:layout_width="match_parent"
 				android:layout_height="250dp"
