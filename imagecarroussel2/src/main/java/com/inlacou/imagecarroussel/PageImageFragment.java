@@ -36,7 +36,7 @@ public class PageImageFragment extends Fragment {
 		maxPages = data.getInt("max_pages", 0);
 		mCurrentPage = data.getInt("current_page", 0);
 		url = data.getString("url", "");
-		showPageNumber = data.getBoolean("showPageNumber");
+		showPageNumber = data.getBoolean("pageNumber");
 
 	}
 

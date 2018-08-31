@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
 	compileSdkVersion 27
@@ -27,4 +29,8 @@ dependencies {
 	implementation 'com.android.support:palette-v7:27.1.1'
 	implementation 'com.squareup.picasso:picasso:2.71828'                                //Picasso (Image load from URL + image cache)
 	implementation 'com.github.lawloretienne:imagegallery:0.1.0'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+	mavenCentral()
 }

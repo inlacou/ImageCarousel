@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.inlacou.imagecarroussel.ImageCarroussel;
+import com.inlacou.imagecarroussel.ImageCarroussel3;
+import com.inlacou.imagecarroussel.ImageCarrousselMdl;
 
 import java.util.ArrayList;
 
@@ -28,7 +30,6 @@ public class CollapsingActivity extends AppCompatActivity {
 		collapsingToolbarLayout.setTitleEnabled(true);
 		collapsingToolbarLayout.setTitle("Collapsing");
 		ImageCarroussel imagecarroussel = findViewById(R.id.imagecarroussel);
-		imagecarroussel.setFragmentManager(getSupportFragmentManager());
 		
 		ArrayList<String> urls = new ArrayList<>();
 		
@@ -37,7 +38,7 @@ public class CollapsingActivity extends AppCompatActivity {
 		urls.add("http://assets.pokemon.com/assets/cms2/img/pokedex/full//748.png");
 		urls.add("https://vignette3.wikia.nocookie.net/pokemon/images/b/b4/393Piplup_Pokemon_Ranger_Guardian_Signs.png/revision/latest?cb=20150109224144");
 		
-		imagecarroussel.populate(urls, true);
+		imagecarroussel.setModel(new ImageCarrousselMdl(getSupportFragmentManager(), urls, new ImageCarrousselMdl.PositionDisplay(true), null));
 		
 		setSupportActionBar(toolbar);
 		
