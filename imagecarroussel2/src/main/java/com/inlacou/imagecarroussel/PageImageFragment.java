@@ -61,7 +61,7 @@ public class PageImageFragment extends Fragment {
 		Point size = new Point();
 		getActivity().getWindowManager().getDefaultDisplay().getSize(size);
 
-		if(!url.isEmpty()) Picasso.with(getActivity()).load(url)
+		if(!url.isEmpty()) Picasso.get().load(url)
 				//.resize(size.x, 500)
 				.fit()
 				.centerCrop()
@@ -75,9 +75,10 @@ public class PageImageFragment extends Fragment {
                             }
                         });*/
 					}
-
-					@Override public void onError() {
-						Log.d(DEBUG_TAG, "onError");
+					
+					@Override
+					public void onError(Exception e) {
+					
 					}
 				});
 		return v;

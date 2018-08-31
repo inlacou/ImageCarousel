@@ -68,7 +68,7 @@ public class ImageCarroussel extends FrameLayout {
 	}
 	
 	public void initialize(View view) {
-		viewPager = (ViewPager) view.findViewById(R.id.pager);
+		viewPager = view.findViewById(R.id.pager);
 	}
 	
 	protected void initialize() {
@@ -116,7 +116,7 @@ public class ImageCarroussel extends FrameLayout {
 			public void loadImageThumbnail(ImageView iv, String imageUrl, int dimension) {
 				Log.d(DEBUG_TAG+".loadImageThumbnail", "imageUrl: " + imageUrl);
 				if (!android.text.TextUtils.isEmpty(imageUrl)) {
-					Picasso.with(iv.getContext())
+					Picasso.get()
 							.load(imageUrl)
 							.resize(dimension, dimension)
 							.centerCrop()
@@ -131,7 +131,7 @@ public class ImageCarroussel extends FrameLayout {
 			public void loadFullScreenImage(final ImageView iv, String imageUrl, int width, final LinearLayout bgLinearLayout) {
 				Log.d(DEBUG_TAG+".loadFullScreenImage", "imageUrl: " + imageUrl);
 				if (!android.text.TextUtils.isEmpty(imageUrl)) {
-					Picasso.with(iv.getContext())
+					Picasso.get()
 							.load(imageUrl)
 							.resize(width, 0)
 							.into(iv, new Callback() {
@@ -146,8 +146,8 @@ public class ImageCarroussel extends FrameLayout {
 								}
 								
 								@Override
-								public void onError() {
-									
+								public void onError(Exception e) {
+								
 								}
 							});
 				} else {
