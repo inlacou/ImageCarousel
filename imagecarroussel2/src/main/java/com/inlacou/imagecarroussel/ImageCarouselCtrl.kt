@@ -114,8 +114,7 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 					lightVibrantColor != 0 -> bgColor = lightVibrantColor
 					darkVibrantColor != 0 -> bgColor = darkVibrantColor
 				}
-				else -> {
-				}
+				else -> {}
 			}
 		}
 

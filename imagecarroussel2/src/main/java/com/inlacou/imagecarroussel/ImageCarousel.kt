@@ -49,6 +49,15 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 	}
 
 	private fun setListeners() {
+		viewPager?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+			override fun onPageScrollStateChanged(state: Int) {}
+
+			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+
+			override fun onPageSelected(position: Int) {
+				model.onPageShown?.invoke(position)
+			}
+		})
 	}
 
 	private fun <T> List<T>.toArrayList(): ArrayList<T>{
