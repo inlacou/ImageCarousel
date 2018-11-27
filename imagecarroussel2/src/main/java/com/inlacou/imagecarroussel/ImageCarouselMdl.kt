@@ -9,5 +9,6 @@ data class ImageCarouselMdl @JvmOverloads constructor(
 		/**
 		 * @return true if handled, false if not
 		 */
-		val onItemClick: ((Int) -> Boolean)? = null
+		val onItemClick: ((Int) -> Boolean)? = null,
+		val onPageShown: ((Int) -> Unit)? = null
 )

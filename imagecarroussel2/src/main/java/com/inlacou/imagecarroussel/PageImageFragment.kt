@@ -98,10 +98,10 @@ class PageImageFragment : Fragment() {
 	private fun setCurrentPageIndicator(position: Int){
 		llIndicator?.removeAllViews()
 		(0 until position)
-				.forEach { llIndicator?.addView(newLightCircle()) }
+				.forEach { _ -> llIndicator?.addView(newLightCircle()) }
 		llIndicator?.addView(newDarkCircle())
 		(position+1 until maxPages)
-				.forEach { llIndicator?.addView(newLightCircle()) }
+				.forEach { _ -> llIndicator?.addView(newLightCircle()) }
 	}
 
 	private fun newDarkCircle(): ImageView {

@@ -66,83 +66,53 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 
 		if (paletteColorType != null) {
 			when (paletteColorType) {
-				PaletteColorType.VIBRANT -> if (vibrantColor != 0) { // primary option
-					bgColor = vibrantColor
-				} else if (lightVibrantColor != 0) { // fallback options
-					bgColor = lightVibrantColor
-				} else if (darkVibrantColor != 0) {
-					bgColor = darkVibrantColor
-				} else if (mutedColor != 0) {
-					bgColor = mutedColor
-				} else if (lightMutedColor != 0) {
-					bgColor = lightMutedColor
-				} else if (darkMutedColor != 0) {
-					bgColor = darkMutedColor
+				PaletteColorType.VIBRANT -> when {
+					vibrantColor != 0 -> bgColor = vibrantColor // primary option
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor // fallback options
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor
+					mutedColor != 0 -> bgColor = mutedColor
+					lightMutedColor != 0 -> bgColor = lightMutedColor
+					darkMutedColor != 0 -> bgColor = darkMutedColor
 				}
-				PaletteColorType.LIGHT_VIBRANT -> if (lightVibrantColor != 0) { // primary option
-					bgColor = lightVibrantColor
-				} else if (vibrantColor != 0) { // fallback options
-					bgColor = vibrantColor
-				} else if (darkVibrantColor != 0) {
-					bgColor = darkVibrantColor
-				} else if (mutedColor != 0) {
-					bgColor = mutedColor
-				} else if (lightMutedColor != 0) {
-					bgColor = lightMutedColor
-				} else if (darkMutedColor != 0) {
-					bgColor = darkMutedColor
+				PaletteColorType.LIGHT_VIBRANT -> when {
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor // primary option
+					vibrantColor != 0 -> bgColor = vibrantColor // fallback options
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor
+					mutedColor != 0 -> bgColor = mutedColor
+					lightMutedColor != 0 -> bgColor = lightMutedColor
+					darkMutedColor != 0 -> bgColor = darkMutedColor
 				}
-				PaletteColorType.DARK_VIBRANT -> if (darkVibrantColor != 0) { // primary option
-					bgColor = darkVibrantColor
-				} else if (vibrantColor != 0) { // fallback options
-					bgColor = vibrantColor
-				} else if (lightVibrantColor != 0) {
-					bgColor = lightVibrantColor
-				} else if (mutedColor != 0) {
-					bgColor = mutedColor
-				} else if (lightMutedColor != 0) {
-					bgColor = lightMutedColor
-				} else if (darkMutedColor != 0) {
-					bgColor = darkMutedColor
+				PaletteColorType.DARK_VIBRANT -> when {
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor // primary option
+					vibrantColor != 0 -> bgColor = vibrantColor // fallback options
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor
+					mutedColor != 0 -> bgColor = mutedColor
+					lightMutedColor != 0 -> bgColor = lightMutedColor
+					darkMutedColor != 0 -> bgColor = darkMutedColor
 				}
-				PaletteColorType.MUTED -> if (mutedColor != 0) { // primary option
-					bgColor = mutedColor
-				} else if (lightMutedColor != 0) { // fallback options
-					bgColor = lightMutedColor
-				} else if (darkMutedColor != 0) {
-					bgColor = darkMutedColor
-				} else if (vibrantColor != 0) {
-					bgColor = vibrantColor
-				} else if (lightVibrantColor != 0) {
-					bgColor = lightVibrantColor
-				} else if (darkVibrantColor != 0) {
-					bgColor = darkVibrantColor
+				PaletteColorType.MUTED -> when {
+					mutedColor != 0 -> bgColor = mutedColor // primary option
+					lightMutedColor != 0 -> bgColor = lightMutedColor // fallback options
+					darkMutedColor != 0 -> bgColor = darkMutedColor
+					vibrantColor != 0 -> bgColor = vibrantColor
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor
 				}
-				PaletteColorType.LIGHT_MUTED -> if (lightMutedColor != 0) { // primary option
-					bgColor = lightMutedColor
-				} else if (mutedColor != 0) { // fallback options
-					bgColor = mutedColor
-				} else if (darkMutedColor != 0) {
-					bgColor = darkMutedColor
-				} else if (vibrantColor != 0) {
-					bgColor = vibrantColor
-				} else if (lightVibrantColor != 0) {
-					bgColor = lightVibrantColor
-				} else if (darkVibrantColor != 0) {
-					bgColor = darkVibrantColor
+				PaletteColorType.LIGHT_MUTED -> when {
+					lightMutedColor != 0 -> bgColor = lightMutedColor // primary option
+					mutedColor != 0 -> bgColor = mutedColor // fallback options
+					darkMutedColor != 0 -> bgColor = darkMutedColor
+					vibrantColor != 0 -> bgColor = vibrantColor
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor
 				}
-				PaletteColorType.DARK_MUTED -> if (darkMutedColor != 0) { // primary option
-					bgColor = darkMutedColor
-				} else if (mutedColor != 0) { // fallback options
-					bgColor = mutedColor
-				} else if (lightMutedColor != 0) {
-					bgColor = lightMutedColor
-				} else if (vibrantColor != 0) {
-					bgColor = vibrantColor
-				} else if (lightVibrantColor != 0) {
-					bgColor = lightVibrantColor
-				} else if (darkVibrantColor != 0) {
-					bgColor = darkVibrantColor
+				PaletteColorType.DARK_MUTED -> when {
+					darkMutedColor != 0 -> bgColor = darkMutedColor // primary option
+					mutedColor != 0 -> bgColor = mutedColor // fallback options
+					lightMutedColor != 0 -> bgColor = lightMutedColor
+					vibrantColor != 0 -> bgColor = vibrantColor
+					lightVibrantColor != 0 -> bgColor = lightVibrantColor
+					darkVibrantColor != 0 -> bgColor = darkVibrantColor
 				}
 				else -> {
 				}
