@@ -6,8 +6,10 @@ data class ImageCarouselMdl @JvmOverloads constructor(
 		val fragmentManager: FragmentManager?,
 		val urls: List<String>,
 		val positionDisplay: PositionDisplayMode = PositionDisplayMode.NONE,
+		val showTopShadow: Boolean = false,
+		val autoSwipe: AutoSwipeMode = AutoSwipeMode(),
 		/**
-		 * @return true if handled, false if not
+		 * @return true if handled, false if not.
 		 */
 		val onItemClick: ((Int) -> Boolean)? = null,
 		val onPageShown: ((Int) -> Unit)? = null

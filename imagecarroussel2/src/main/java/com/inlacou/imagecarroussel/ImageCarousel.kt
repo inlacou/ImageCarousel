@@ -3,6 +3,7 @@ package com.inlacou.imagecarroussel
 import android.content.Context
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 
@@ -58,6 +59,15 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 				model.onPageShown?.invoke(position)
 			}
 		})
+	}
+
+	fun nextPage(){
+		Log.d("nextPage", "currentItem: ${viewPager?.currentItem}")
+		if(model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1){
+			viewPager?.currentItem = 0
+		}else {
+			viewPager?.arrowScroll(View.FOCUS_RIGHT)
+		}
 	}
 
 	private fun <T> List<T>.toArrayList(): ArrayList<T>{

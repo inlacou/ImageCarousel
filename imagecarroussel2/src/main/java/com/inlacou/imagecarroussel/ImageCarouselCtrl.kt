@@ -2,7 +2,10 @@ package com.inlacou.imagecarroussel
 
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
+import android.os.AsyncTask
+import android.os.Handler
 import android.support.v7.graphics.Palette
+import android.util.Log
 import android.view.View
 import com.etiennelawlor.imagegallery.library.activities.FullScreenImageGalleryActivity
 import com.etiennelawlor.imagegallery.library.activities.ImageGalleryActivity
@@ -13,6 +16,20 @@ import com.squareup.picasso.Picasso
 class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 
 	private val paletteColorType: PaletteColorType? = null
+
+	init {
+		Log.d("controller", "create")
+		//AutoSwipeTask(view).execute(model.autoSwipe.interval)
+		val handler = Handler()
+		val delay = (model.autoSwipe.interval*1000).toLong() //milliseconds
+
+		handler.postDelayed(object : Runnable {
+			override fun run() {
+				view.nextPage()
+				handler.postDelayed(this, delay)
+			}
+		}, delay)
+	}
 
 	private fun weirdCallbacks() {
 		ImageGalleryActivity.setImageThumbnailLoader { iv, imageUrl, dimension ->
@@ -34,12 +51,9 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 						.into(iv, object : Callback {
 							override fun onSuccess() {
 								val bitmap = (iv.drawable as BitmapDrawable).bitmap
-								Palette.from(bitmap).generate { palette -> applyPalette(palette, bgLinearLayout) }
+								Palette.from(bitmap).generate { palette -> if(palette!=null) applyPalette(palette, bgLinearLayout) }
 							}
-
-							override fun onError(e: Exception) {
-
-							}
+							override fun onError(e: Exception) {}
 						})
 			} else {
 				iv.setImageDrawable(null)
