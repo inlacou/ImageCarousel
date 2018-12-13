@@ -35,7 +35,8 @@ class NormalActivity : AppCompatActivity() {
 				fragmentManager = supportFragmentManager,
 				urls = urls,
 				positionDisplay = PositionDisplayMode.NONE,
-				autoSwipe = AutoSwipeMode(active = true))
+				autoSwipe = AutoSwipeMode(active = true),
+				showTopShadow = false)
 
 		setSupportActionBar(toolbar)
 

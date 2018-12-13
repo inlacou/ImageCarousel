@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.inlacou.imagecarroussel.PositionDisplayMode.*
+import com.inlacou.imagecarroussel.R.id.shadow
 
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
@@ -22,6 +23,7 @@ import com.squareup.picasso.Picasso
 class PageImageFragment : Fragment() {
 
 	private var llIndicator: LinearLayout? = null
+	private var shadow: ImageView? = null
 	private var image: ImageView? = null
 	private var positionText: TextView? = null
 	var onClickListener: ((Int) -> Unit)? = null
@@ -29,6 +31,7 @@ class PageImageFragment : Fragment() {
 	private var mCurrentPage: Int = 0
 	private var maxPages: Int = 0
 	private var url: String = "something"
+	private var showTopShadow: Boolean = true
 	private var positionDisplay: PositionDisplayMode = NONE
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,12 +44,14 @@ class PageImageFragment : Fragment() {
 		maxPages = data!!.getInt("max_pages", 0)
 		mCurrentPage = data.getInt("current_page", 0)
 		url = data.getString("url", "something")
+		showTopShadow = data.getBoolean("showTopShadow", true)
 		positionDisplay = values()[data.getInt("positionDisplay")]
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val v = inflater.inflate(R.layout.viewpager_layout_page_image, container, false)
 		image = v.findViewById(R.id.image)
+		shadow = v.findViewById(R.id.shadow)
 		positionText = v.findViewById(R.id.position_text)
 		llIndicator = v.findViewById(R.id.indicator)
 
@@ -65,6 +70,12 @@ class PageImageFragment : Fragment() {
 				llIndicator?.visibility = View.GONE
 				positionText?.visibility = View.GONE
 			}
+		}
+
+		shadow?.visibility = if(showTopShadow){
+			View.VISIBLE
+		}else{
+			View.GONE
 		}
 
 		image?.setOnClickListener { onClickListener?.invoke(mCurrentPage) }

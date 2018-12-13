@@ -42,7 +42,8 @@ class CollapsingActivity : AppCompatActivity() {
 				fragmentManager = supportFragmentManager,
 				urls = urls,
 				positionDisplay = PositionDisplayMode.TEXT,
-				autoSwipe = AutoSwipeMode(active = true))
+				autoSwipe = AutoSwipeMode(active = true),
+				showTopShadow = false)
 
 		setSupportActionBar(toolbar)
 

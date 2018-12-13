@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.view.PagerAdapter
-import java.io.Serializable
 
 import java.util.ArrayList
 
@@ -13,11 +12,12 @@ import java.util.ArrayList
  */
 class PicturesFragmentPagerAdapter @JvmOverloads
 constructor(
-		fm: FragmentManager,
+		fragmentManager: FragmentManager,
 		private val urls: ArrayList<String>,
 		private val positionDisplay: PositionDisplayMode,
+		private val showTopShadow: Boolean,
 		private val onClick: ((Int) -> Unit)? = null)
-	: android.support.v4.app.FragmentStatePagerAdapter(fm) {
+	: android.support.v4.app.FragmentStatePagerAdapter(fragmentManager) {
 
 	private val pageCount: Int
 
@@ -34,6 +34,7 @@ constructor(
 		val data = Bundle()
 		data.putInt("current_page", position)
 		data.putInt("max_pages", pageCount)
+		data.putBoolean("showTopShadow", showTopShadow)
 		data.putInt("positionDisplay", positionDisplay.ordinal)
 		data.putString("url", urls[position])
 		myFragment.onClickListener = { onClick?.invoke(position) }

@@ -40,7 +40,11 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 	fun populate() {
 		/** Instantiating FragmentPagerAdapter  */
 		model.fragmentManager?.let { fragmentManager ->
-			pagerAdapter = PicturesFragmentPagerAdapter(fragmentManager, model.urls.toArrayList(), model.positionDisplay) {
+			pagerAdapter = PicturesFragmentPagerAdapter(
+					fragmentManager = fragmentManager,
+					urls = model.urls.toArrayList(),
+					positionDisplay = model.positionDisplay,
+					showTopShadow = model.showTopShadow) {
 				controller.onClick(it)
 			}
 
