@@ -22,6 +22,10 @@ constructor(
 
 	private val pageCount: Int
 
+	companion object {
+		const val MAX_VALUE = 1000
+	}
+
 	init {
 		for (i in urls.indices.reversed()) {
 			if (urls[i].isEmpty()) urls.removeAt(i)
@@ -47,7 +51,7 @@ constructor(
 	/** Returns the number of pages  */
 	override fun getCount(): Int {
 		return if(infinite) {
-			if(pageCount==0) pageCount else Int.MAX_VALUE
+			if(pageCount==0) pageCount else MAX_VALUE
 		}else {
 			pageCount
 		}
