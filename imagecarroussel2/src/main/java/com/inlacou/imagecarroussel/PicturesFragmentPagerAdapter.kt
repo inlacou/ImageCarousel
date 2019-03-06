@@ -16,6 +16,7 @@ constructor(
 		private val urls: ArrayList<String>,
 		private val positionDisplay: PositionDisplayMode,
 		private val showTopShadow: Boolean,
+		private val infinite: Boolean,
 		private val onClick: ((Int) -> Unit)? = null)
 	: android.support.v4.app.FragmentStatePagerAdapter(fragmentManager) {
 
@@ -30,21 +31,26 @@ constructor(
 
 	/** This method will be invoked when a page is requested to create  */
 	override fun getItem(position: Int): Fragment {
+		val virtualPos = if(infinite) position%pageCount else position
 		val myFragment = PageImageFragment()
 		val data = Bundle()
-		data.putInt("current_page", position)
+		data.putInt("current_page", virtualPos)
 		data.putInt("max_pages", pageCount)
 		data.putBoolean("showTopShadow", showTopShadow)
 		data.putInt("positionDisplay", positionDisplay.ordinal)
-		data.putString("url", urls[position])
-		myFragment.onClickListener = { onClick?.invoke(position) }
+		data.putString("url", urls[virtualPos])
+		myFragment.onClickListener = { onClick?.invoke(virtualPos) }
 		myFragment.arguments = data
 		return myFragment
 	}
 
 	/** Returns the number of pages  */
 	override fun getCount(): Int {
-		return pageCount
+		return if(infinite) {
+			if(pageCount==0) pageCount else Int.MAX_VALUE
+		}else {
+			pageCount
+		}
 	}
 
 	override fun getItemPosition(`object`: Any): Int {

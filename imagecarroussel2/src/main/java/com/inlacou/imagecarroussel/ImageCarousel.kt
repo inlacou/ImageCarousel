@@ -46,7 +46,8 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 					fragmentManager = fragmentManager,
 					urls = model.urls.toArrayList(),
 					positionDisplay = model.positionDisplay,
-					showTopShadow = model.showTopShadow) {
+					showTopShadow = model.showTopShadow,
+					infinite = model.autoSwipe.continuous) {
 				controller.onClick(it)
 			}
 
@@ -70,11 +71,11 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 		})
 	}
 
-	fun nextPage(){
+	fun nextPage() {
 		Log.d("nextPage", "currentItem: ${viewPager?.currentItem}")
-		if(model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1){
-			viewPager?.currentItem = 0
-		}else {
+		if(!model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1){
+			//Do nothing
+		}else{
 			viewPager?.arrowScroll(View.FOCUS_RIGHT)
 		}
 	}
