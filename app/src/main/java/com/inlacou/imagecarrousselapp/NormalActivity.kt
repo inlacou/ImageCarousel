@@ -34,9 +34,11 @@ class NormalActivity : AppCompatActivity() {
 		imagecarroussel.model = ImageCarouselMdl(
 				fragmentManager = supportFragmentManager,
 				urls = urls,
-				positionDisplay = PositionDisplayMode.NONE,
+				positionDisplay = PositionDisplayMode.CIRCLES,
 				autoSwipe = AutoSwipeMode(active = true),
-				showTopShadow = false)
+				showTopShadow = false,
+				pagePaddingRight = 60,
+				pageMargin = 15)
 
 		setSupportActionBar(toolbar)
 

@@ -38,6 +38,8 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 	}
 
 	fun populate() {
+		viewPager?.clipToPadding = false
+
 		/** Instantiating FragmentPagerAdapter  */
 		model.fragmentManager?.let { fragmentManager ->
 			pagerAdapter = PicturesFragmentPagerAdapter(
@@ -47,6 +49,9 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 					showTopShadow = model.showTopShadow) {
 				controller.onClick(it)
 			}
+
+			viewPager?.setPadding(model.pagePaddingLeft ?: 0, 0, model.pagePaddingRight ?: 0, 0)
+			model.pageMargin?.let { viewPager?.pageMargin = it }
 
 			/** Setting the pagerAdapter to the pager object  */
 			viewPager?.adapter = pagerAdapter
