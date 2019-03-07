@@ -26,8 +26,24 @@ constructor(
 		const val INITIAL_MAX_VALUE = 1000
 	}
 
-	val maxValue: Int
-		get() = if(pageCount>INITIAL_MAX_VALUE){
+	var maxValue: Int = 0
+		private set
+
+	init {
+		for (i in urls.indices.reversed()) {
+			if (urls[i].isEmpty()) urls.removeAt(i)
+		}
+		pageCount = urls.size
+		calculateMaxValue()
+	}
+
+	override fun notifyDataSetChanged() {
+		calculateMaxValue()
+		super.notifyDataSetChanged()
+	}
+
+	private fun calculateMaxValue(){
+		if(pageCount>INITIAL_MAX_VALUE){
 			pageCount
 		}else{
 			var maxVal = pageCount
@@ -36,12 +52,6 @@ constructor(
 			}
 			maxVal
 		}
-
-	init {
-		for (i in urls.indices.reversed()) {
-			if (urls[i].isEmpty()) urls.removeAt(i)
-		}
-		pageCount = urls.size
 	}
 
 	/** This method will be invoked when a page is requested to create  */
