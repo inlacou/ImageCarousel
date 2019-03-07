@@ -30,6 +30,9 @@ class NormalActivity : AppCompatActivity() {
 		urls.add("https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/08/Togepi-Pokemon-Go.png")
 		urls.add("http://assets.pokemon.com/assets/cms2/img/pokedex/full//748.png")
 		urls.add("https://vignette3.wikia.nocookie.net/pokemon/images/b/b4/393Piplup_Pokemon_Ranger_Guardian_Signs.png/revision/latest?cb=20150109224144")
+		urls.add("https://vignette.wikia.nocookie.net/es.pokemon/images/4/4f/Torchic.png/revision/latest?cb=20140612153748")
+		urls.add("https://vignette.wikia.nocookie.net/es.pokemon/images/4/43/Bulbasaur.png/revision/latest?cb=20170120032346")
+		urls.add("https://assets.pokemon.com/assets/cms2/img/pokedex/full//133.png")
 
 		imagecarroussel.model = ImageCarouselMdl(
 				fragmentManager = supportFragmentManager,

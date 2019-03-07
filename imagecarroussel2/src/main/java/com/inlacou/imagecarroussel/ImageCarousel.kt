@@ -72,14 +72,15 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 	}
 
 	fun shouldLoadNextPage() {
-		Log.d("shouldLoadNextPage", "currentItem: ${viewPager?.currentItem} | ${model.urls.size-1} | ${PicturesFragmentPagerAdapter.MAX_VALUE-1}")
 		if(!model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1){
 			/*Do nothing*/
 			return
 		}
-		if(viewPager?.currentItem==PicturesFragmentPagerAdapter.MAX_VALUE-1){
-			viewPager?.setCurrentItem(0, false)
-			return
+		pagerAdapter?.let {
+			if(viewPager?.currentItem==it.maxValue-1){
+				viewPager?.setCurrentItem(0, false)
+				return
+			}
 		}
 		moveForward()
 	}
