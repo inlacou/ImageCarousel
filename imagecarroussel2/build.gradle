@@ -30,6 +30,7 @@ dependencies {
 	implementation 'com.squareup.picasso:picasso:2.71828'                                //Picasso (Image load from URL + image cache)
 	implementation 'com.github.lawloretienne:imagegallery:0.1.0'
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	implementation 'com.jakewharton.timber:timber:4.7.1'
 }
 repositories {
 	mavenCentral()

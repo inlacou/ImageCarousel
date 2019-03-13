@@ -43,7 +43,7 @@ constructor(
 	}
 
 	private fun calculateMaxValue(){
-		if(pageCount>INITIAL_MAX_VALUE){
+		maxValue = if(pageCount>INITIAL_MAX_VALUE){
 			pageCount
 		}else{
 			var maxVal = pageCount
