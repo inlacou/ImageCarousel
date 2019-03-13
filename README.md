@@ -37,6 +37,18 @@ Configure it:
 			pagePaddingRight = 60,
 			pageMargin = 15)
 ```
+Parameters:
+	fragmentManager: FragmentManager
+	urls: List of Strings
+	positionDisplay: optional, PositionDisplayMode (custom enum class, TEXT, CIRCLES or NONE), default NONE 
+	showTopShadow: optional, Boolean, default false
+	autoSwipe: optional, AutoSwipeMode (custom class)
+	onItemClick: optional, callback
+	onPageShown: optional, callback
+	pagePaddingLeft: optional, left padding, default 0
+	pagePaddingRight: optional, right padding, default 0
+	pageMargin: optional, page margin, default 0
+
 You can add it inside your AppBarLayout, for example:
 
 ``` xml
