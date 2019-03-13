@@ -13,6 +13,7 @@ import com.inlacou.imagecarroussel.AutoSwipeMode
 import com.inlacou.imagecarroussel.ImageCarousel
 import com.inlacou.imagecarroussel.ImageCarouselMdl
 import com.inlacou.imagecarroussel.PositionDisplayMode
+import timber.log.Timber
 
 import java.util.ArrayList
 
@@ -20,6 +21,8 @@ class NormalActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		Timber.plant(Timber.DebugTree())
+
 		setContentView(R.layout.activity_normal)
 		val toolbar = findViewById<Toolbar>(R.id.toolbar)
 		val imagecarroussel = findViewById<ImageCarousel>(R.id.imagecarroussel)
@@ -41,7 +44,13 @@ class NormalActivity : AppCompatActivity() {
 				autoSwipe = AutoSwipeMode(active = true),
 				showTopShadow = false,
 				pagePaddingRight = 60,
-				pageMargin = 15)
+				pageMargin = 15,
+				onItemClick = {
+					Timber.d("onItemClick $it"); false
+				},
+				onPageShown = {
+					Timber.d("onPageShown $it")
+				})
 
 		setSupportActionBar(toolbar)
 

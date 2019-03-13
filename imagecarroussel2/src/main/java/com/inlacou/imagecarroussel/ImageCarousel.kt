@@ -66,7 +66,7 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 			override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
 			override fun onPageSelected(position: Int) {
-				model.onPageShown?.invoke(position)
+				controller.onPageShown(position)
 			}
 		})
 	}

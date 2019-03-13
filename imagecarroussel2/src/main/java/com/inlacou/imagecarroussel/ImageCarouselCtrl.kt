@@ -17,7 +17,6 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 	private val paletteColorType: PaletteColorType? = null
 
 	init {
-		Log.d("controller", "create")
 		//AutoSwipeTask(view).execute(model.autoSwipe.interval)
 		val handler = Handler()
 		val delay = (model.autoSwipe.interval*1000).toLong() //milliseconds
@@ -135,7 +134,7 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 	}
 
 	fun onClick(position: Int) {
-		if(model.onItemClick?.invoke(position)!=true) {
+		if(model.onItemClick?.invoke(position%model.urls.size)!=true) {
 			if (model.urls.isNotEmpty()) {
 				val intent = Intent(view.context, ImageGalleryActivity::class.java)
 
@@ -152,6 +151,10 @@ class ImageCarouselCtrl(val view: ImageCarousel, var model: ImageCarouselMdl) {
 		val result = ArrayList<T>()
 		this.forEach { result.add(it) }
 		return result
+	}
+
+	fun onPageShown(position: Int) {
+		model.onPageShown?.invoke(position%model.urls.size)
 	}
 
 }
