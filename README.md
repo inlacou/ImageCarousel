@@ -1,4 +1,4 @@
-# ImageCarroussel
+# ImageCarousel
 
 [![](https://jitpack.io/v/inlacou/ImageCarousel.svg)](https://jitpack.io/#inlacou/ImageCarousel)
 
