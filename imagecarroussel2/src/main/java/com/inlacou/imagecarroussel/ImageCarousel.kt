@@ -3,7 +3,6 @@ package com.inlacou.imagecarroussel
 import android.content.Context
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.FrameLayout
 
@@ -27,17 +26,17 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 		populate()
 	}
 
-	protected fun initialize() {
+	private fun initialize() {
 		val rootView = View.inflate(context, R.layout.view_imagecarousel, this)
 		viewPager = findViewById(R.id.pager)
 		initialize(rootView)
 	}
 
-	fun initialize(view: View) {
+	private fun initialize(view: View) {
 		controller = ImageCarouselCtrl(view = this, model = model)
 	}
 
-	fun populate() {
+	private fun populate() {
 		viewPager?.clipToPadding = false
 
 		/** Instantiating FragmentPagerAdapter  */
@@ -72,7 +71,7 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 	}
 
 	fun shouldLoadNextPage() {
-		if(!model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1){
+		if(!model.autoSwipe.active || (!model.autoSwipe.continuous && viewPager?.currentItem==model.urls.size-1)){
 			/*Do nothing*/
 			return
 		}
@@ -85,8 +84,20 @@ class ImageCarousel @JvmOverloads constructor(context: Context, attrs: Attribute
 		moveForward()
 	}
 
-	fun moveForward(){
+	private fun moveForward(){
 		viewPager?.arrowScroll(View.FOCUS_RIGHT)
+	}
+
+	fun stopAutoSwipe(){
+		model.autoSwipe.active = false
+	}
+
+	fun startAutoSwipe(){
+		model.autoSwipe.active = true
+	}
+
+	fun switchAutoSwipeStatus(){
+		model.autoSwipe.active = !model.autoSwipe.active
 	}
 
 	private fun <T> List<T>.toArrayList(): ArrayList<T>{

@@ -41,7 +41,7 @@ class NormalActivity : AppCompatActivity() {
 				fragmentManager = supportFragmentManager,
 				urls = urls,
 				positionDisplay = PositionDisplayMode.CIRCLES,
-				autoSwipe = AutoSwipeMode(active = true),
+				autoSwipe = AutoSwipeMode(active = false),
 				showTopShadow = false,
 				pagePaddingRight = 60,
 				pageMargin = 15,
@@ -56,8 +56,7 @@ class NormalActivity : AppCompatActivity() {
 
 		val fab = findViewById<FloatingActionButton>(R.id.fab)
 		fab.setOnClickListener { view ->
-			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-					.setAction("Action", null).show()
+			imagecarroussel.switchAutoSwipeStatus()
 		}
 	}
 
